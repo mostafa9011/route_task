@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:route_task/core/utils/constants.dart';
 
 class TextStyles {
   static const TextStyle textStyle11 = TextStyle(
@@ -6,6 +7,8 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     fontFamily: 'Poppins',
     color: Color(0xff004182),
+    decoration: TextDecoration.lineThrough,
+    decorationColor: Constants.primaryColor,
   );
 
   static const TextStyle textStyle12 = TextStyle(

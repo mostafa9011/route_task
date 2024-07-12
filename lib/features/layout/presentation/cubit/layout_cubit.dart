@@ -43,7 +43,5 @@ class LayoutCubit extends Cubit<LayoutState> {
         emit(LayoutInitial());
         break;
     }
-    // emit(ChangeCurrentBottomNavBarIndex1());
-    print('Tapped');
   }
 }
