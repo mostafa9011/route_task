@@ -26,7 +26,7 @@ class TextStyles {
   );
   static const TextStyle textStyle16 = TextStyle(
     fontFamily: 'Poppins',
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 16,
   );
   static const TextStyle textStyle22 = TextStyle(

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/constants.dart';
 
 class CustomItemImage extends StatelessWidget {
-  const CustomItemImage({super.key});
+  const CustomItemImage({
+    super.key,
+    required this.productImage,
+  });
+  final String productImage;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +17,16 @@ class CustomItemImage extends StatelessWidget {
         Container(
           height: mediaQuery.height * 0.15,
           width: mediaQuery.width,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(22),
               topRight: Radius.circular(22),
             ),
-            color: Colors.black,
-            // image: DecorationImage(
-            //   image: NetworkImage('url'),
-            // ),
+            color: Colors.grey,
+            image: DecorationImage(
+              image: NetworkImage(productImage),
+              fit: BoxFit.contain,
+            ),
           ),
         ),
         const Positioned(

@@ -12,7 +12,7 @@ class ProductModel extends ProductEntitiy {
   final double? discountPercentage;
   final double? rating;
   final int? stock;
-  final List<String>? tags;
+  final List<dynamic>? tags;
   final String? brand;
   final String? sku;
   final int? weight;
@@ -24,10 +24,10 @@ class ProductModel extends ProductEntitiy {
   final String? returnPolicy;
   final int? minimumOrderQuantity;
   final Meta? meta;
-  final List<String>? images;
+  final List<dynamic>? images;
   final String? thumbnail;
 
-  const ProductModel({
+  ProductModel({
     this.id,
     this.title,
     this.description,
@@ -59,7 +59,7 @@ class ProductModel extends ProductEntitiy {
           productDiscountPercentage: discountPercentage ?? 0,
           productRating: rating ?? 0,
           productBrand: brand ?? '',
-          productImages: images,
+          productImages: ProductModel.fromDynamicImages(images!),
           productThumbnail: thumbnail ?? '',
         );
 
@@ -72,7 +72,7 @@ class ProductModel extends ProductEntitiy {
         discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
         rating: (json['rating'] as num?)?.toDouble(),
         stock: json['stock'] as int?,
-        tags: json['tags'] as List<String>?,
+        tags: json['tags'] as List<dynamic>?,
         brand: json['brand'] as String?,
         sku: json['sku'] as String?,
         weight: json['weight'] as int?,
@@ -90,7 +90,7 @@ class ProductModel extends ProductEntitiy {
         meta: json['meta'] == null
             ? null
             : Meta.fromJson(json['meta'] as Map<String, dynamic>),
-        images: json['images'] as List<String>?,
+        images: json['images'] as List<dynamic>?,
         thumbnail: json['thumbnail'] as String?,
       );
 
@@ -118,4 +118,12 @@ class ProductModel extends ProductEntitiy {
         'images': productImages,
         'thumbnail': productThumbnail,
       };
+  static List<String> fromDynamicImages(List<dynamic> images) {
+    List<String> imageList = [];
+    for (var element in images) {
+      String image = element as String;
+      imageList.add(image);
+    }
+    return imageList;
+  }
 }

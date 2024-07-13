@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-
+import '../../domain/entities/product_entitiy.dart';
 import 'product_item.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({
     super.key,
+    required this.productEntitiyList,
   });
+
+  final List<ProductEntitiy> productEntitiyList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,11 @@ class ProductsGridView extends StatelessWidget {
         mainAxisSpacing: 15,
       ),
       itemBuilder: (context, index) {
-        return const ProductItem();
+        return ProductItem(
+          productEntitiy: productEntitiyList[index],
+        );
       },
+      itemCount: productEntitiyList.length,
     );
   }
 }

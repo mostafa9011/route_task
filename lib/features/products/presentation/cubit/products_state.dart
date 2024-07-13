@@ -8,3 +8,16 @@ abstract class ProductsState extends Equatable {
 }
 
 class ProductsInitial extends ProductsState {}
+
+class ProductsLoading extends ProductsState {}
+
+class ProductsSuccess extends ProductsState {
+  final List<ProductEntitiy> productList;
+  const ProductsSuccess(this.productList);
+}
+
+class ProductsFailure extends ProductsState {
+  final String message;
+
+  const ProductsFailure(this.message);
+}

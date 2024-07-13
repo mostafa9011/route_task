@@ -1,38 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:route_task/core/utils/constants.dart';
+import 'package:route_task/features/products/domain/entities/product_entitiy.dart';
 import '../../../../core/utils/styles/text_styles.dart';
 
 class ItemDesc extends StatelessWidget {
-  const ItemDesc({super.key});
+  const ItemDesc({super.key, required this.productEntitiy});
+  final ProductEntitiy productEntitiy;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Nike Air Jordon',
+            productEntitiy.productTitle,
             style: TextStyles.textStyle14,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
-            'Nike shoes flexible for mostafa',
+            productEntitiy.productDesc,
             style: TextStyles.textStyle14,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(height: 7),
+          const SizedBox(height: 7),
           Row(
             children: [
               Text(
-                'EGP 1,000',
+                'EGP ${getFormatedPriceAfterdiscount(
+                  productEntitiy.productPrice,
+                  productEntitiy.productDiscountPercentage,
+                )}',
                 style: TextStyles.textStyle14,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               Text(
-                '1,300 EGP',
+                '${productEntitiy.productPrice} EGP',
                 style: TextStyles.textStyle11,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -42,16 +47,16 @@ class ItemDesc extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Review (4.5) ',
+                'Review (${productEntitiy.productRating}) ',
                 style: TextStyles.textStyle14,
                 overflow: TextOverflow.ellipsis,
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 color: Color(0xffFFD700),
               ),
-              Spacer(),
-              Icon(
+              const Spacer(),
+              const Icon(
                 Icons.add_circle,
                 color: Constants.primaryColor,
                 size: 44,
@@ -62,4 +67,11 @@ class ItemDesc extends StatelessWidget {
       ),
     );
   }
+}
+
+String getFormatedPriceAfterdiscount(num price, num discount) {
+  num discountValue = price * discount / 100;
+  num result = price - discountValue;
+
+  return result.toStringAsFixed(1);
 }
