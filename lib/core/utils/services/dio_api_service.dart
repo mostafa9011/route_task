@@ -4,7 +4,7 @@ class DioApiService {
   final Dio dio;
 
   // declare your baseUrl
-  static const String baseUrl = '';
+  static const String baseUrl = 'https://dummyjson.com';
 
   DioApiService(this.dio);
 
